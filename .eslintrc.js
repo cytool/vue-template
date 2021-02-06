@@ -39,7 +39,7 @@ module.exports = {
             "treatUndefinedAsUnspecified": true
         }],
         "no-useless-return": "error",
-        "no-empty-function": "error", // 禁止空函数，除非在函数体内写上注释
+        "no-empty-function": ["error", { "allow": ["methods"] }], // 禁止空函数，除非在函数体内写上注释
         "no-caller": "error", // 不通过caller获取参数
         "no-extra-bind": "error",
         "no-loop-func": "error",

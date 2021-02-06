@@ -1,21 +1,15 @@
 <template lang="pug">
-#about
+#idName
     p 这里是About页面
 </template>
 
 <script>
-const td = { a: 1 }
-const arr = [1, 2, 3, 4, 5, 5, 5, 6, 7]
-
 export default {
-    name: 'about',
+    name: 'componentName',
     data() {
-        return {
-            td,
-            arr,
-            a: 2,
-        }
+        return {}
     },
+    methods() {},
 }
 </script>
 
