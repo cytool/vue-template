@@ -3,6 +3,32 @@
 ### 编辑器必装插件
 `vetur` / `eslint`
 
+### Vetur其他配置
+在`vs Code编辑器`配置文件`setting.json`添加如下配置：
+```js
+{
+    "vetur.format.options.tabSize": 4,
+    "vetur.format.options.useTabs": false,
+    "vetur.format.defaultFormatterOptions": {
+        "prettier": {
+            "semi": false, // 禁止分号
+            "singleQuote": true, // 单引号
+            "trailingComma": "all" // 尾随逗号
+        },
+        "js-beautify-html": {
+            "wrap_attributes": "force-expand-multiline"
+        },
+        "prettyhtml": {
+            "printWidth": 120,
+            "singleQuote": true,
+            "wrapAttributes": false,
+            "sortAttributes": false
+        }
+    },
+}
+
+```
+
 ### 启用 eslint（代码格式化规范）
 基于`recommended`官方推荐规则。查看目录`.eslintrc.js`
 
@@ -12,10 +38,10 @@
 ### 配置 pug format（基于vetur的书写风格）
 查看目录`.prettierrc.js`
 ### 配置 stylus format（基于vetur的书写风格）
-
 在`vs Code编辑器`配置文件`setting.json`添加如下配置：
 ```js
 {
+
   "stylusSupremacy.insertBraces": false, // 不要括号
   "stylusSupremacy.insertColons": false, // 不要冒号
   "stylusSupremacy.insertSemicolons": false, // 不要分号
@@ -23,6 +49,7 @@
   "stylusSupremacy.alwaysUseZeroWithoutUnit": true, // 0不带单位
   "stylusSupremacy.reduceMarginAndPaddingValues": true, // 合并margin/padding属性
   "stylusSupremacy.selectorSeparator": ", " // 多个class之间用 , 分割 => .a, #b
+
 }
 ```
 [更多stylus格式化配置](https://thisismanta.github.io/stylus-supremacy/#command-line)

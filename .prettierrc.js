@@ -1,5 +1,5 @@
 module.exports = {
-    trailingComma: "es5",
+    trailingComma: "all", // 尾随逗号
     tabWidth: 4, // 4个空格
     semi: false, // 分号
     singleQuote: true, // 单引号

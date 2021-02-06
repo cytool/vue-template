@@ -17,7 +17,7 @@ module.exports = {
         "array-callback-return": "error", // 数组回调要有return
         "array-bracket-newline": ["error", 'never'], // 禁止数组[]括号不换行
         "array-bracket-spacing": "error", // []内禁止空格
-        "array-element-newline": ["error", 'never'], // 禁止数组元素换行
+        // "array-element-newline": ["error", 'never'], // 禁止数组元素换行
         "no-array-constructor": "error", // 禁止数组构造函数，用 []
 
         /* ------------- var -------------*/
@@ -148,14 +148,15 @@ module.exports = {
         "comma-spacing": ["error", { // 逗号后面添加空格
             "after": true
         }],
-        "comma-dangle": ["error", { // 要求使用拖尾逗号
-            "arrays": "never",
-            "objects": "always",
-            "imports": "never",
-            "exports": "never",
-            "functions": "never"
 
-        }],
+        "comma-dangle": ["error", {
+            "arrays": "always-multiline",
+            "exports": "always-multiline",
+            "functions": "never",
+            "imports": "always-multiline",
+            "objects": "always-multiline",
+        }], // 要求使用拖尾逗号
+
         "comma-style": ["error", 'last'], // 逗号在行尾
         "computed-property-spacing": ["error", 'never'], // 禁止在[]有空格
         // "id-blacklist": ["error", 'data', 'event'],  禁用一些关键字。
@@ -181,11 +182,12 @@ module.exports = {
         }],
         "one-var": ["error", 'never'], // 每个作用域内，变量都要单独定义
         "operator-linebreak": ["error", 'before'], // 操作符换行时在前   // a \n + b
-        "padded-blocks": ["error", { // 要求{}中，首尾是空行
-            "blocks": "always",
-            "classes": "never",
-            "switches": "never"
-        }],
+        // "padded-blocks": ["error", { // 要求{}中，首尾是空行
+        //     "blocks": "always",
+        //     "classes": "never",
+        //     "switches": "never",
+        //     allowSingleLineBlocks: true
+        // }],
         "padding-line-between-statements": ["error", {
             "blankLine": 'always',
             "prev": ['block-like', 'multiline-let', 'multiline-const'], // 这些后面必须要有一个空行
@@ -232,6 +234,6 @@ module.exports = {
         "accessor-pairs": "error", // setter、getter成对出现 
 
         /* ------------- 其他 -------------*/
-        "id-blacklist": ["error", 'data', 'id'], // 禁用 data,id等(待补充)命名， 请使用更有意义的名称
+        // "id-blacklist": ["error", 'data', 'id'], // 禁用 data,id等(待补充)命名， 请使用更有意义的名称
     }
 }
