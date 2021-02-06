@@ -108,3 +108,13 @@ src/
             index.styl //=> 统一命名  
 ```
 __注意，样式文件要以`非scoped`形式引入。__ 因此需要注意起的类名不与其他页面冲突。
+
+
+
+
+
+创建多个文件
+https://stackoverflow.com/questions/64248732/how-to-simultaneously-create-a-new-folder-and-multiple-files-in-vscode
+
+
+https://stackoverflow.com/questions/46714353/how-to-customize-context-menu-in-visual-studio-code
