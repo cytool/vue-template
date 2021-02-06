@@ -1,19 +1,9 @@
-<template>
-    <div id="app">
-        <div id="nav">
-            <router-link to="/">Home</router-link> |
-            <router-link to="/about">About</router-link>
-        </div>
-        <router-view />
-    </div>
+<template lang="pug">
+#entry
+    #nav
+        router-link(to='/') home
+        router-link(to='/about') About
+    #router-view
 </template>
 
-<style lang="stylus">
-#app
-    color #2c3e50
-    font-family Avenir, Helvetica, Arial, sans-serif
-    margin-top 60px
-    text-align center
-    -moz-osx-font-smoothing grayscale
-    -webkit-font-smoothing antialiased
-</style>
+<style lang="stylus" src="stylus/reset.styl"></style>
