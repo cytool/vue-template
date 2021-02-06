@@ -1,11 +1,11 @@
 <template lang="pug">
-#idName
+#pageName
     p 这里是About页面
 </template>
 
 <script>
 export default {
-    name: 'componentName',
+    name: 'pageName',
     data() {
         return {}
     },
