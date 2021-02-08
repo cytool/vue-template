@@ -1,7 +1,11 @@
 ## 🎉  🎉  🎉 VUE空模板项目 🎉  🎉  🎉
 
 ### 编辑器必装插件
-`vetur` / `eslint`
+`vetur` / `eslint` / 自定义插件`/extensions/generator-vue-folder`
+
+安装自定义插件：切换到`扩展`面板，在扩展头部右上角`...`，选择`install from VSIX`，选择`/extensions/generator-vue-folder-0.0.1.vsix`即可。
+
+自定义插件用法：1. src(含)内在文件夹右键，选择“`CYTOOL - 快速生成VUE页面目录`”、 2. .vue文件内输入`vt`快速生成vue文件结构
 
 ------
 ### Vetur其他配置
@@ -109,12 +113,3 @@ src/
 ```
 __注意，样式文件要以`非scoped`形式引入。__ 因此需要注意起的类名不与其他页面冲突。
 
-
-
-
-
-创建多个文件
-https://stackoverflow.com/questions/64248732/how-to-simultaneously-create-a-new-folder-and-multiple-files-in-vscode
-
-
-https://stackoverflow.com/questions/46714353/how-to-customize-context-menu-in-visual-studio-code
