@@ -2,7 +2,7 @@
 
 ### 编辑器必装插件
 
-`vetur` / `eslint` /  [https://github.com/cytool/generator-vue-folder](https://github.com/cytool/generator-vue-folder)
+`vetur` / `eslint` /  `Manta's Stylus Supremacy` / [generator-vue-folder](https://github.com/cytool/generator-vue-folder)
 
 ------
 ### Vetur其他配置
@@ -48,7 +48,8 @@
 
 ------
 ### 配置 stylus format（基于vetur的书写风格）
-在`vs Code编辑器`配置文件`setting.json`添加如下配置：(在JSON文件内提示`Unknown Configuration Setting`，请无视)
+
+- 在`vs Code编辑器`配置文件`setting.json`添加如下配置：(在JSON文件内提示`Unknown Configuration Setting`，请无视)
 ```js
 {
   "stylusSupremacy.insertBraces": false, // 不要括号
