@@ -1,11 +1,8 @@
 ## 🎉  🎉  🎉 VUE空模板项目 🎉  🎉  🎉
 
 ### 编辑器必装插件
-`vetur` / `eslint` / 自定义插件`/extensions/generator-vue-folder`
 
-安装自定义插件：切换到`扩展`面板，在扩展头部右上角`...`，选择`install from VSIX`，选择`/extensions/generator-vue-folder-0.0.1.vsix`即可。
-
-自定义插件用法：1. src(含)内在文件夹右键，选择“`CYTOOL - 快速生成VUE页面目录`”、 2. .vue文件内输入`vt`快速生成vue文件结构
+`vetur` / `eslint` /  [https://github.com/cytool/generator-vue-folder](https://github.com/cytool/generator-vue-folder)
 
 ------
 ### Vetur其他配置
