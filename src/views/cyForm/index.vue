@@ -16,7 +16,7 @@ export default {
     components: { phone, age },
 
     data() {
-        return { cyPhone: '', cyAge: '' }
+        return { cyPhone: '123', cyAge: '' }
     },
     methods() {},
 }

@@ -2,7 +2,7 @@
 .input-item
     .label
         label(for='cy-phone') 电话号码
-        span.tip(v-if='flag') {{ error }}
+        span.validateError(v-if='validateError') 手机号码位数错误
 
     input#cy-phone(
         :placeholder='placeholder',
@@ -12,56 +12,56 @@
 </template>
 
 <script>
-import { checkPhone } from '../../util/regex'
+import { regRules } from '../../util/regex'
 export default {
     name: 'cyPhone',
     props: {
         placeholder: {
+            // input placeholder属性
             type: String,
             default: '请输入电话号码',
         },
-        value: String,
+        value: String, //  父级v-model的值
         trigger: {
-            // 事件触发后校验
+            // 触发校验的事件， 默认input （还有blur）
             type: String,
             default: 'input', // blur
         },
     },
     data() {
         return {
-            error: '', // 保存错误信息提示
-            phone: '', // 保存手机号码
-            flag: false, //  判断是否显示手机号码提示的错误信息
+            phone: this.value, // 手机号码
+            validateError: false, // 验证错误（目前只做验证失败提示
         }
     },
     methods: {
+        //
+        /**
+         * 实时验证手机号 => 限制可输入的范围只能为数字
+         * @param {Object | Event} e Event对象
+         * @return {void}
+         */
         inval(e) {
-            this.flag = false
-
+            this.validateError = false
             if (this.trigger !== 'blur') {
-                // 默认input触发校验，因此需要先校验value的值在emit
-                this.phone = e.target.value.replace(/[^\d]{1,}/giu, '') // 不让用户输入除数字外的其它字符
-                if (checkPhone(this.phone)) {
-                    // v-model进行数据的双向绑定，内部是由@input和：value两部分组成，通过$emit将input事件发送到父组件中，触发@input
-                    this.$emit('input', this.phone)
-                }
+                this.phone = e.target.value.replace(regRules.phone, '') // 不让用户输入除数字外的其它字符
             }
+
+            this.$emit('input', this.phone)
         },
+
+        /**
+         * 失去焦点，验证手机号 => 决定是否显示验证失败提示语
+         * @param {Object | Event} e Event对象
+         * @return {void}
+         */
         checkBlur(e) {
-            // 保存失去焦点时的手机号码
             const phone = e.target.value
 
-            if (phone.length === 0) {
-                this.flag = true
-                this.error = '手机号码必填，请输入正确的手机号码！'
-                this.$emit('input', '') // 当用户第一次输入的数据正确后面改错时重置显示的内容
-                return
-            }
-
-            if (phone.length !== 11) {
-                this.flag = true
-                this.error = '手机号码的位数不正确，请检查！'
-                this.$emit('input', '') // 当用户第一次输入的数据正确后面改错时重置显示的内容
+            if (this.trigger !== 'blur') {
+                if (!phone.length || phone.length !== 11) {
+                    this.validateError = true
+                }
             }
         },
     },

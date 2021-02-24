@@ -7,3 +7,4 @@
 </template>
 
 <style lang="stylus" src="./stylus/reset.styl"></style>
+<style lang="stylus" src="./stylus/base.styl"></style>
