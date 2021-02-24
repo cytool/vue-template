@@ -1,7 +1,14 @@
 <template lang="pug">
 .input-item
-    label(for='cy-form-phone')
-    input#cy-form-phone(:placeholder='placeholder', @input='inval')
+    .label
+        label(for='cy-form-phone')
+        span.tip(v-if='flag') {{ error }}
+
+    input#cy-form-phone(
+        :placeholder='placeholder',
+        @blur='checkAge',
+        @input='inval',
+        v-model='userAge')
 </template>
 
 <script>
@@ -16,11 +23,31 @@ export default {
         trigger: String,
     },
     data() {
-        return {}
+        return {
+            flag: false,
+            userAge: '', // 用户年龄
+            error: '', //  错误提示
+        }
     },
     methods: {
         inval(e) {
-            this.$emit('input', e.target.value)
+            // 设置用户只能输入数字
+            this.userAge = e.target.value.replace(/[^\d]{1,}/giu, '')
+
+            this.$emit('input', this.userAge)
+        },
+        checkAge(e) {
+            console.log(e, '查看获取的值')
+
+            if (e.target.value.length > 3) {
+                this.flag = true
+                this.error = '输入的年龄不正确，请重新输入'
+                return
+            }
+
+            this.flag = false
+            this.error = ''
+            this.userAge = e.target.value
         },
     },
 }
