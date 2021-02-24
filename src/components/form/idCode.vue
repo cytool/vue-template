@@ -1,25 +1,25 @@
 <template lang="pug">
 .input-item
     .label
-        label(for='cy-phone') 电话号码
-        span.validateError(v-if='validateError') 手机号码位数错误
+        label(for='cy-idCode') 身份证
+        span.validateError(v-if='validateError') 输入的身份证号不正确
 
-    input#cy-phone(
+    input#cy-idCode(
         :placeholder='placeholder',
         @blur='checkBlur',
         @input='inval',
-        v-model='phone')
+        v-model='idCode')
 </template>
 
 <script>
-import { regRules } from '../../util/regex'
+import { regRules, validateRules } from '../../util/regex'
 export default {
-    name: 'cyPhone',
+    name: 'cyIdCode',
     props: {
         placeholder: {
             // input placeholder属性
             type: String,
-            default: '请输入电话号码',
+            default: '请输入身份证号码',
         },
         value: String, //  父级v-model的值
         trigger: {
@@ -30,36 +30,37 @@ export default {
     },
     data() {
         return {
-            phone: this.value, // 手机号码
+            idCode: this.value, // 身份证号
             validateError: false, // 验证错误（目前只做验证失败提示
         }
     },
     methods: {
         //
         /**
-         * 实时验证手机号 => 限制可输入的范围只能为数字
+         * 实时验证身份证号码 => 限制可输入的范围只能为数字
          * @param {Object | Event} e Event对象
          * @return {void}
          */
         inval(e) {
             this.validateError = false
             if (this.trigger !== 'blur') {
-                this.phone = e.target.value.replace(regRules.isNotNum, '') // 不让用户输入除数字外的其它字符
+                this.idCode = e.target.value.replace(regRules.isNotNum, '') // 不让用户输入除数字外的其它字符
             }
 
-            this.$emit('input', this.phone)
+            this.$emit('input', this.idCode)
         },
 
         /**
-         * 失去焦点，验证手机号 => 决定是否显示验证失败提示语
+         * 失去焦点，验证身份证号 => 决定是否显示验证失败提示语
          * @param {Object | Event} e Event对象
          * @return {void}
          */
         checkBlur(e) {
-            const phone = e.target.value
+            const idCode = e.target.value
 
             if (this.trigger !== 'blur') {
-                if (!phone.length || phone.length !== 11) {
+                // 当身份证号长度不对或者不符合身份证号规则
+                if (!idCode.length || !validateRules.idCode(idCode)) {
                     this.validateError = true
                 }
             }

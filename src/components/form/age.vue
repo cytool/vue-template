@@ -1,8 +1,8 @@
 <template lang="pug">
 .input-item
     .label
-        label(for='cy-form-phone')
-        span.tip(v-if='flag') {{ error }}
+        label(for='cy-form-phone') 年龄
+        span.validateError(v-if='flag') {{ error }}
 
     input#cy-form-phone(
         :placeholder='placeholder',
