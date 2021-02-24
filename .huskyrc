@@ -1,6 +1,6 @@
 {
   "hooks": {
-    "post-commit": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "post-commit": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
     "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
   }
 }
