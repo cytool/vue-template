@@ -87,7 +87,17 @@ const COMMIT_TYPE = {
 
 [commit提交约定](https://www.conventionalcommits.org/zh-hans/v1.0.0-beta.4/)  / [commitlint type-enum](https://commitlint.js.org/#/reference-rules?id=type-enum)
 
+
+
 ------
+
+### 生成 CHANGELOG
+
+全局安装`yarn global add conventional-changelog-cli`
+
+用法查看目录`.husky`文件
+
+[conventional-changelog更多介绍](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli)
 ------
 ------
 ## 🎉  🎉  🎉 VUE空模板项目 - 项目组织 🎉  🎉  🎉

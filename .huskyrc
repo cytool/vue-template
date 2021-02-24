@@ -1,5 +1,6 @@
 {
   "hooks": {
+    "post-commit": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
   }
 }
