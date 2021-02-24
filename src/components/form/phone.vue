@@ -38,11 +38,14 @@ export default {
         inval(e) {
             this.flag = false
 
-            // 默认input触发校验，因此需要先校验value的值在emit
-            this.phone = e.target.value.replace(/[^\d]{1,}/giu, '')
-
-            // v-model进行数据的双向绑定，内部是由@input和：value两部分组成，通过$emit将input事件发送到父组件中，触发@input
-            this.$emit('input', this.phone)
+            if (this.trigger !== 'blur') {
+                // 默认input触发校验，因此需要先校验value的值在emit
+                this.phone = e.target.value.replace(/[^\d]{1,}/giu, '') // 不让用户输入除数字外的其它字符
+                if (checkPhone(this.phone)) {
+                    // v-model进行数据的双向绑定，内部是由@input和：value两部分组成，通过$emit将input事件发送到父组件中，触发@input
+                    this.$emit('input', this.phone)
+                }
+            }
         },
         checkBlur(e) {
             // 保存失去焦点时的手机号码
@@ -51,15 +54,14 @@ export default {
             if (phone.length === 0) {
                 this.flag = true
                 this.error = '手机号码必填，请输入正确的手机号码！'
+                this.$emit('input', '') // 当用户第一次输入的数据正确后面改错时重置显示的内容
                 return
             }
 
-            if (!checkPhone(phone)) {
+            if (phone.length !== 11) {
                 this.flag = true
-                this.error = '手机号码的格式不正确，请重新输入！'
-            } else {
-                this.flag = false
-                this.error = ''
+                this.error = '手机号码的位数不正确，请检查！'
+                this.$emit('input', '') // 当用户第一次输入的数据正确后面改错时重置显示的内容
             }
         },
     },

@@ -3,7 +3,7 @@
     p.txt 这里是Form页面
 
     phone(v-model='cyPhone')
-    age(v-model='cyAge')
+    age(trigger='blur', v-model='cyAge')
 
     p 打印 {{ cyPhone }}, {{ cyAge }}
 </template>

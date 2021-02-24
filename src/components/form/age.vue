@@ -31,23 +31,20 @@ export default {
     },
     methods: {
         inval(e) {
+            this.flag = false
+            this.error = ''
             // 设置用户只能输入数字
             this.userAge = e.target.value.replace(/[^\d]{1,}/giu, '')
-
-            this.$emit('input', this.userAge)
         },
         checkAge(e) {
-            console.log(e, '查看获取的值')
-
             if (e.target.value.length > 3) {
                 this.flag = true
                 this.error = '输入的年龄不正确，请重新输入'
+                this.$emit('input', '') // 当用户第一次输入正确时第二次输入错误时将显示的数据重置
                 return
             }
 
-            this.flag = false
-            this.error = ''
-            this.userAge = e.target.value
+            this.$emit('input', this.userAge)
         },
     },
 }

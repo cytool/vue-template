@@ -4,6 +4,6 @@
  * @param {nubmer | string} phoneNum 电话号码
  * @return {boolean} 是否验证通过
  */
-const checkPhone = phoneNum => /^1\d{10}$/igu.test(phoneNum)
+const checkPhone = phoneNum => /^1[3-9]\d{9}$/igu.test(phoneNum.trim())
 
 export { checkPhone }
