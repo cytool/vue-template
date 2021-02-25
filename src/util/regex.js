@@ -16,6 +16,11 @@ const regRules = {
      */
     idCode: /^[1-9][0-9]{5}([1][9][0-9]{2}|[2][0][0|1][0-9])([0][1-9]|[1][0|1|2])([0][1-9]|[1|2][0-9]|[3][0|1])[0-9]{3}([0-9]|[X])$/u,
 
+    /**
+     * 电子邮箱规则
+     */
+    email: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/u,
+
 }
 const validateRules = {
 
@@ -67,6 +72,13 @@ const validateRules = {
         // 返回验证结果，校验码和格式同时正确才算是合法的身份证号码
         return Boolean(last === lastNo && format)
     },
+
+    /**
+     * 验证邮箱地址
+     * @param {string} email 邮箱地址
+     * @return {boolean} 是否验证通过
+     */
+    email: emailNum => regRules.email.test(emailNum.trim()),
 }
 
 export { regRules, validateRules }
