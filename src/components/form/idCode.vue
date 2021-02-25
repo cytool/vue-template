@@ -2,7 +2,7 @@
 .input-item
     .label
         label(for='cy-idCode') 身份证
-        span.validateError(v-if='validateError') 输入的身份证号不正确
+        span.validateError(v-if='validateError') {{ errorTip }}
 
     input#cy-idCode(
         :placeholder='placeholder',
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { regRules, validateRules } from '../../util/regex'
+import { validateRules } from '../../util/regex'
 export default {
     name: 'cyIdCode',
     props: {
@@ -32,6 +32,7 @@ export default {
         return {
             idCode: this.value, // 身份证号
             validateError: false, // 验证错误（目前只做验证失败提示
+            errorTip: '', // 验证错误提示的内容
         }
     },
     methods: {
@@ -44,7 +45,6 @@ export default {
         inval(e) {
             this.validateError = false
             if (this.trigger !== 'blur') {
-                this.idCode = e.target.value.replace(regRules.isNotNum, '') // 不让用户输入除数字外的其它字符
             }
 
             this.$emit('input', this.idCode)
@@ -60,7 +60,11 @@ export default {
 
             if (this.trigger !== 'blur') {
                 // 当身份证号长度不对或者不符合身份证号规则
-                if (!idCode.length || !validateRules.idCode(idCode)) {
+                if (!idCode.length || idCode.length !== 18) {
+                    this.errorTip = '输入的身份证号位数错误'
+                    this.validateError = true
+                } else if (!validateRules.idCode(idCode)) {
+                    this.errorTip = '输入的身份证号不正确'
                     this.validateError = true
                 }
             }

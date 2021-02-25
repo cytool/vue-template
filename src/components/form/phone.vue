@@ -2,7 +2,7 @@
 .input-item
     .label
         label(for='cy-phone') 电话号码
-        span.validateError(v-if='validateError') 手机号码位数错误
+        span.validateError(v-if='validateError') {{ errorTip }}
 
     input#cy-phone(
         :placeholder='placeholder',
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { regRules } from '../../util/regex'
+import { regRules, validateRules } from '../../util/regex'
 export default {
     name: 'cyPhone',
     props: {
@@ -32,6 +32,7 @@ export default {
         return {
             phone: this.value, // 手机号码
             validateError: false, // 验证错误（目前只做验证失败提示
+            errorTip: '', // 验证错误提示的内容
         }
     },
     methods: {
@@ -44,7 +45,7 @@ export default {
         inval(e) {
             this.validateError = false
             if (this.trigger !== 'blur') {
-                this.phone = e.target.value.replace(regRules.isNotNum, '') // 不让用户输入除数字外的其它字符
+                this.phone = e.target.value.replace(regRules.notNum, '') // 不让用户输入除数字外的其它字符
             }
 
             this.$emit('input', this.phone)
@@ -60,6 +61,10 @@ export default {
 
             if (this.trigger !== 'blur') {
                 if (!phone.length || phone.length !== 11) {
+                    this.errorTip = '手机号码位数错误'
+                    this.validateError = true
+                } else if (!validateRules.phone(phone)) {
+                    this.errorTip = '手机号码错误'
                     this.validateError = true
                 }
             }
