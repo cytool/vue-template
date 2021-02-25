@@ -2,7 +2,7 @@
 .input-item
     .label
         label(for='cy-bankCode') 银行卡号
-        span.validateError(v-if='validateError') 输入的银行卡号格式不正确
+        span.validateError(v-if='validateError') {{ errorTip }}
 
     input#cy-bankCode(
         :placeholder='placeholder',
@@ -45,7 +45,7 @@ export default {
             this.validateError = false
 
             if (this.trigger !== 'blur') {
-                this.bankCode = e.target.value.replace(regRules.isNotNum, '')
+                this.bankCode = e.target.value.replace(regRules.notNum, '')
             }
 
             this.$emit('input', this.bankCode)
@@ -57,8 +57,14 @@ export default {
          * @return {void}
          */
         checkBlur(e) {
+            const bankCode = e.target.value
+
             if (this.trigger !== 'blur') {
-                if (!validateRules.bankCode(this.bankCode)) {
+                if (!bankCode.length || bankCode.length !== 16) {
+                    this.errorTip = '银行卡号位数不对'
+                    this.validateError = true
+                } else if (!validateRules.bankCode(bankCode)) {
+                    this.errorTip = '银行卡号不正确'
                     this.validateError = true
                 }
             }

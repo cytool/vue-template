@@ -4,7 +4,7 @@ const regRules = {
     /**
      * 验证不是数字的规则
      */
-    isNotNum: /[^\d]{1,}/igu,
+    notNum: /[^\d]{1,}/igu,
 
     /**
      * 大陆手机号码规则

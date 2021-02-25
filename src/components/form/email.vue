@@ -2,7 +2,7 @@
 .input-item
     .label
         label(for='cy-email') 电子邮箱
-        span.validateError(v-if='validateError') 输入的电子邮箱格式不正确
+        span.validateError(v-if='validateError') {{ errorTip }}
 
     input#cy-email(
         :placeholder='placeholder',
@@ -32,6 +32,7 @@ export default {
         return {
             email: this.value, // 邮箱号
             validateError: false, // 验证错误（目前只做验证失败提示
+            errorTip: '', // 验证错误时提示的内容
         }
     },
     methods: {
@@ -57,8 +58,16 @@ export default {
          * @return {void}
          */
         checkBlur(e) {
-            if (this.trigger === 'blur' && !validateRules.email(this.email)) {
-                this.validateError = true
+            const email = e.target.value
+
+            if (this.trigger === 'blur') {
+                if (!email.length) {
+                    this.errorTip = '输入的电子邮箱不能为空'
+                    this.validateError = true
+                } else if (!validateRules.email(this.email)) {
+                    this.errorTip = '输入的电子邮箱格式不正确'
+                    this.validateError = true
+                }
             }
         },
     },

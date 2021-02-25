@@ -1,10 +1,10 @@
 <template lang="pug">
 .input-item
     .label
-        label(for='cy-form-phone') 年龄
-        span.validateError(v-if='flag') {{ error }}
+        label(for='cy-form-age') 年龄
+        span.validateError(v-if='validateError') {{ errorTip }}
 
-    input#cy-form-phone(
+    input#cy-form-age(
         :placeholder='placeholder',
         @blur='checkAge',
         @input='inval',
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { regRules } from '../../util/regex'
 export default {
     name: 'cyFormAge',
     props: {
@@ -24,24 +25,28 @@ export default {
     },
     data() {
         return {
-            flag: false,
+            validateError: false,
             userAge: '', // 用户年龄
-            error: '', //  错误提示
+            errorTip: '', //  错误提示内容
         }
     },
     methods: {
         inval(e) {
-            this.flag = false
-            this.error = ''
+            this.validateError = false
+            this.errorTip = ''
             // 设置用户只能输入数字
-            this.userAge = e.target.value.replace(/[^\d]{1,}/giu, '')
+            this.userAge = e.target.value.replace(regRules.notNum, '')
+            this.$emit('input', this.userAge)
         },
         checkAge(e) {
-            if (e.target.value.length > 3) {
-                this.flag = true
-                this.error = '输入的年龄不正确，请重新输入'
-                this.$emit('input', '') // 当用户第一次输入正确时第二次输入错误时将显示的数据重置
-                return
+            const userAge = e.target.value
+
+            if (!userAge.length) {
+                this.validateError = true
+                this.errorTip = '年龄不能为空'
+            } else if (userAge.length > 3) {
+                this.validateError = true
+                this.errorTip = '输入的年龄不正确'
             }
 
             this.$emit('input', this.userAge)
