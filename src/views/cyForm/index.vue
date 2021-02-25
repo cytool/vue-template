@@ -6,14 +6,16 @@
     age(trigger='blur', v-model='cyAge')
     idCode(v-model='cyIdCode')
     email(trigger='blur', v-model='cyEmail')
+    bankCode(v-model='cyBankCode')
 
-    p 打印 {{ cyPhone }}, {{ cyAge }}, {{ cyIdCode }},{{ cyEmail }}
+    p 打印 {{ cyPhone }}, {{ cyAge }}, {{ cyIdCode }},{{ cyEmail }},{{ cyBankCode }}
 </template>
 <script>
 import phone from '@/components/form/phone.vue'
 import age from '@/components/form/age.vue'
 import idCode from '@/components/form/idCode.vue'
 import email from '@/components/form/email.vue'
+import bankCode from '@/components/form/bankCode.vue'
 
 export default {
     name: 'cyForm',
@@ -22,6 +24,7 @@ export default {
         age,
         idCode,
         email,
+        bankCode,
     },
 
     data() {
@@ -30,6 +33,7 @@ export default {
             cyAge: '',
             cyIdCode: '',
             cyEmail: '',
+            cyBankCode: '',
         }
     },
     methods() {},

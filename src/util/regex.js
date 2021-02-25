@@ -21,6 +21,11 @@ const regRules = {
      */
     email: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/u,
 
+    /**
+     * 银行卡号规则
+     */
+    bankCode: /^([1-9]{1})(\d{15}|\d{18})$/u,
+
 }
 const validateRules = {
 
@@ -79,6 +84,13 @@ const validateRules = {
      * @return {boolean} 是否验证通过
      */
     email: emailNum => regRules.email.test(emailNum.trim()),
+
+    /**
+     * 验证银行卡号
+     * @param {string} bankCode 银行卡号
+     * @return {boolean} 是否验证通过
+     */
+    bankCode: bankCode => regRules.bankCode.test(bankCode.trim()),
 }
 
 export { regRules, validateRules }
