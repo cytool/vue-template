@@ -13,6 +13,7 @@
 
 <script>
 import { regRules, validateRules } from '../../util/regex'
+import { errorTxt } from '../../util/words'
 export default {
     name: 'cyBankCode',
     props: {
@@ -60,11 +61,14 @@ export default {
             const bankCode = e.target.value
 
             if (this.trigger !== 'blur') {
-                if (!bankCode.length || bankCode.length !== 16) {
-                    this.errorTip = '银行卡号位数不对'
+                if (!bankCode.length) {
+                    this.errorTip = errorTxt.bankCodeEmpty
+                    this.validateError = true
+                } else if (bankCode.length !== 16) {
+                    this.errorTip = errorTxt.bankCodeLength
                     this.validateError = true
                 } else if (!validateRules.bankCode(bankCode)) {
-                    this.errorTip = '银行卡号不正确'
+                    this.errorTip = errorTxt.bankCodeVerify
                     this.validateError = true
                 }
             }

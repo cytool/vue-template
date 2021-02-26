@@ -1,6 +1,11 @@
 # 0.1.0 (2021-02-25)
 
 
+### Bug Fixes
+
+* 修复身份证号不能输入英文字母问题和显示的错误的提示词 ([4f9f3f7](https://github.com/cytool/vue-template/commit/4f9f3f7dddae08fd79e6e57cec8e1a1676a1dbd6))
+
+
 ### Features
 
 * 初始化项目+一些项目配置:样式兼容性/prettier格式化/提交规范 ([174379b](https://github.com/cytool/vue-template/commit/174379bb843b8f81c033f48d5910aaf3ddd745fd))

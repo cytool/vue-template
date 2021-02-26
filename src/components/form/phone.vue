@@ -13,6 +13,7 @@
 
 <script>
 import { regRules, validateRules } from '../../util/regex'
+import { errorTxt } from '../../util/words'
 export default {
     name: 'cyPhone',
     props: {
@@ -60,11 +61,14 @@ export default {
             const phone = e.target.value
 
             if (this.trigger !== 'blur') {
-                if (!phone.length || phone.length !== 11) {
-                    this.errorTip = '手机号码位数错误'
+                if (!phone.length) {
+                    this.errorTip = errorTxt.phoneEmpty
+                    this.validateError = true
+                } else if (phone.length !== 11) {
+                    this.errorTip = errorTxt.phoneLength
                     this.validateError = true
                 } else if (!validateRules.phone(phone)) {
-                    this.errorTip = '手机号码错误'
+                    this.errorTip = errorTxt.phoneVerify
                     this.validateError = true
                 }
             }

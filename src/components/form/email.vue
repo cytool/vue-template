@@ -13,6 +13,7 @@
 
 <script>
 import { validateRules } from '../../util/regex'
+import { errorTxt } from '../../util/words'
 export default {
     name: 'cyEmail',
     props: {
@@ -62,10 +63,10 @@ export default {
 
             if (this.trigger === 'blur') {
                 if (!email.length) {
-                    this.errorTip = '输入的电子邮箱不能为空'
+                    this.errorTip = errorTxt.emailEmpty
                     this.validateError = true
                 } else if (!validateRules.email(this.email)) {
-                    this.errorTip = '输入的电子邮箱格式不正确'
+                    this.errorTip = errorTxt.emailVerify
                     this.validateError = true
                 }
             }

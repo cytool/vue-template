@@ -13,6 +13,7 @@
 
 <script>
 import { regRules } from '../../util/regex'
+import { errorTxt } from '../../util/words'
 export default {
     name: 'cyFormAge',
     props: {
@@ -43,10 +44,10 @@ export default {
 
             if (!userAge.length) {
                 this.validateError = true
-                this.errorTip = '年龄不能为空'
+                this.errorTip = errorTxt.ageEmpty
             } else if (userAge.length > 3) {
                 this.validateError = true
-                this.errorTip = '输入的年龄不正确'
+                this.errorTip = errorTxt.ageVerify
             }
 
             this.$emit('input', this.userAge)
