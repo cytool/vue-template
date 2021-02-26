@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import { validateRules } from '../../util/regex'
+import { regRules, validateRules } from '../../util/regex'
+import { errorTxt } from '../../util/words'
 export default {
     name: 'cyIdCode',
     props: {
@@ -44,7 +45,12 @@ export default {
          */
         inval(e) {
             this.validateError = false
+
             if (this.trigger !== 'blur') {
+                this.idCode = e.target.value
+                if (this.idCode.length < 18) {
+                    this.idCode = this.idCode.replace(regRules.notNum, '')
+                }
             }
 
             this.$emit('input', this.idCode)
@@ -60,11 +66,14 @@ export default {
 
             if (this.trigger !== 'blur') {
                 // 当身份证号长度不对或者不符合身份证号规则
-                if (!idCode.length || idCode.length !== 18) {
-                    this.errorTip = '输入的身份证号位数错误'
+                if (!idCode.length) {
+                    this.errorTip = errorTxt.idCodeEmpty
+                    this.validateError = true
+                } else if (idCode.length !== 18) {
+                    this.errorTip = errorTxt.idCodeLength
                     this.validateError = true
                 } else if (!validateRules.idCode(idCode)) {
-                    this.errorTip = '输入的身份证号不正确'
+                    this.errorTip = errorTxt.idCodeVerify
                     this.validateError = true
                 }
             }
