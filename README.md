@@ -77,6 +77,19 @@ __注意，样式文件要以`非scoped`形式引入。__ 因此需要注意起�
         1. 全局安装`yarn global add conventional-changelog-cli`
         2. 使用查看`/.husky`文件
 
+    2. eslint错误: Cannot find module 'eslint-plugin-vue' ➡ 在`VS Code`配置文件`setting.json`添加如下配置：
+
+        ```js
+        {
+            "eslint.workingDirectories": [
+                {
+                    "mode": "auto"
+                }
+            ],
+        }
+
+        ```
+
 ------
 
 ### Todo
@@ -92,4 +105,4 @@ __注意，样式文件要以`非scoped`形式引入。__ 因此需要注意起�
 - [commit提交约定](https://www.conventionalcommits.org/zh-hans/v1.0.0-beta.4/)
 - [commitlint type-enum](https://commitlint.js.org/#/reference-rules?id=type-enum)
 - [conventional-changelog文档](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli)
-
+- [Cannot find module 'eslint-plugin-vue'](https://github.com/microsoft/vscode-eslint/issues/956)
